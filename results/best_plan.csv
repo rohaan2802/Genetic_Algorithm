@@ -1,0 +1,9 @@
+zone,zone_name,products,weight_kg,capacity_kg,headroom_kg
+Z1,Heavy Item Floor Storage,P4 - Rice Bags; P12 - Flour Bags,95,120,25
+Z2,Standard Rack Storage,(empty),0,80,80
+Z3,Fragile Item Shelf,P1 - Glass Bottles; P5 - Ceramic Plates; P9 - Olive Oil Bottles; P13 - Wine Bottles; P18 - Bubble Wrap Rolls,79,80,1
+Z4,Temperature Controlled Storage,P6 - Ice Cream,25,80,55
+Z5,Hazardous Material Storage,P3 - Cleaning Acid; P7 - Detergent; P10 - Industrial Bleach; P14 - Paint Cans; P20 - Hand Sanitizer,80,80,0
+Z6,Fast-Moving Product Area (Near Exit),P8 - Chips Carton; P15 - Biscuit Boxes; P19 - Wheat Sacks,54,60,6
+Z7,Bulk Dry Storage,P16 - Motor Oil,35,150,115
+Z8,Refrigerated Loading Dock,P2 - Frozen Meat; P11 - Yogurt Cartons; P17 - Frozen Fish,64,100,36

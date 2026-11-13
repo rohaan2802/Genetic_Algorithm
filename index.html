@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>
+    (function(){
+      var t='dark';
+      try{
+        var q=new URLSearchParams(location.search).get('theme');
+        if(q==='light'||q==='dark')t=q;
+        else { var s=localStorage.getItem('ga-theme'); if(s==='light'||s==='dark')t=s; }
+      }catch(e){}
+      document.documentElement.setAttribute('data-theme',t);
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#14161c">
+  <meta name="description" content="A genetic algorithm that places twenty products into eight warehouse zones. Best fitness 82, from conflicting storage constraints.">
+  <meta property="og:title" content="Warehouse storage with a genetic algorithm">
+  <meta property="og:description" content="Tournament selection, two-point crossover and per-gene mutation. Best fitness 82 on a seeded re-run, matching the written report.">
+  <meta property="og:url" content="https://rohaan2802.github.io/Genetic_Algorithm/">
+  <link rel="canonical" href="https://rohaan2802.github.io/Genetic_Algorithm/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <title>Warehouse storage with a genetic algorithm · Mohammad Rohaan</title>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav" id="top">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Genetic Algorithm home"><span class="brand-logo">GA</span><span>Genetic Algorithm</span></a>
+      <nav class="nav-links" id="nav-links">
+        <a href="#links">Links</a>
+        <a href="#overview">Overview</a>
+        <a href="#inside">Inside</a>
+        <a href="#data">Data</a>
+        <a href="#models">Models</a>
+        <a href="#results">Results</a>
+        <a href="#files">Files</a>
+        <a href="#gallery">Screenshots</a>
+        <a href="#structure">Structure</a>
+        <a href="#run">How to run</a>
+        <a href="#license">License</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn menu-btn" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+        <button class="icon-btn theme-btn" id="theme-toggle" type="button" aria-label="Toggle theme">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+  <header class="hero">
+    <div class="wrap reveal">
+      <p class="eyebrow">Assignment 2 · 22I-2327 · warehouse storage</p>
+      <h1>Placing twenty products with a genetic algorithm</h1>
+      <p class="lead">I assigned twenty products to eight warehouse zones under the constraints from the brief. Fitness is a penalty total; lower is better. The written report, and a seeded re-run of the same operators, both come back at 82. Several rules pull the same product toward different zones, so 82 is the cheapest leftover penalty I found, not a perfect plan.</p>
+      <div class="badges">
+        <img src="https://img.shields.io/badge/Python-3-3776AB?style=for-the-badge&amp;logo=python&amp;logoColor=white" alt="Python 3" width="110" height="28">
+        <img src="https://img.shields.io/badge/Dependencies-stdlib%20only-informational?style=for-the-badge" alt="Standard library only" width="230" height="28">
+        <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License: MIT" width="104" height="28">
+      </div>
+      <p class="cta">
+        <a class="btn btn-primary" href="https://github.com/rohaan2802/Genetic_Algorithm">Open the repository</a>
+        <a class="btn btn-ghost" href="https://github.com/rohaan2802/Genetic_Algorithm/archive/refs/heads/main.zip">Download ZIP</a>
+        <a class="btn btn-ghost" href="#gallery">View screenshots</a>
+      </p>
+      <div class="stats">
+        <div class="stat"><b>20</b><span>Products in the table</span></div>
+        <div class="stat"><b>8</b><span>Warehouse zones</span></div>
+        <div class="stat"><b>82</b><span>Best fitness, seed 0</span></div>
+        <div class="stat"><b>45</b><span>Generation that first hit 82</span></div>
+      </div>
+    </div>
+  </header>
+
+  <section id="links">
+    <div class="wrap reveal">
+      <h2>Live Links</h2>
+      <p class="sub">The repository, this page, and a ZIP of the current main branch.</p>
+      <div class="table-wrap">
+        <table class="links-table">
+          <thead><tr><th scope="col">What</th><th scope="col">Link</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Repository</th><td><a href="https://github.com/rohaan2802/Genetic_Algorithm">https://github.com/rohaan2802/Genetic_Algorithm</a></td></tr>
+            <tr><th scope="row">Website</th><td><a href="https://rohaan2802.github.io/Genetic_Algorithm/">https://rohaan2802.github.io/Genetic_Algorithm/</a></td></tr>
+            <tr><th scope="row">Download ZIP</th><td><a href="https://github.com/rohaan2802/Genetic_Algorithm/archive/refs/heads/main.zip">https://github.com/rohaan2802/Genetic_Algorithm/archive/refs/heads/main.zip</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="overview">
+    <div class="wrap reveal">
+      <h2>Overview</h2>
+      <p>The brief is <em>Assignment 2: Warehouse Storage Optimization Using Genetic Algorithm</em>. Twenty named products go into eight zones, each with a weight cap, under nine penalty rules. I submitted a single Python 3 file (standard library only), a short report, and viva notes. Tournament selection of size 5, two-point crossover, per-gene mutation at 0.08, and elitism of two chromosomes run for up to 900 generations on a population of 150.</p>
+      <p>The report’s best fitness is 82. The original file has no <code>random.seed</code>. The companion script <code>src/<wbr>warehouse_ga.py</code> uses the same operators and, with <code>--seed 0</code> (the default), reaches 82 at generation 45 and keeps it through generation 900. That is the plan described below.</p>
+    </div>
+  </section>
+
+  <section id="inside">
+    <div class="wrap reveal">
+      <h2>What's inside</h2>
+      <div class="grid">
+        <article class="card"><h3>The original file</h3><p><code>src/<wbr>i222327_<wbr>A02_<wbr>A.py</code> is the submitted script, kept byte-for-byte (the original name was <code>i222327_<wbr>A#02_<wbr>A.py</code>). It starts the search on import, with no seed.</p></article>
+        <article class="card"><h3>A companion script</h3><p><code>src/<wbr>warehouse_<wbr>ga.py</code> is the same algorithm, with a seed, a per-generation log, CSV tables and optional plots.</p></article>
+        <article class="card"><h3>The brief and the write-up</h3><p>The assignment PDF, the written report, and the viva questions live under <code>docs/</code>.</p></article>
+        <article class="card"><h3>Results</h3><p>The seed-0 plan, twenty leftover violations, the penalty breakdown, and fitness against generation, under <code>results/</code>.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="data">
+    <div class="wrap reveal">
+      <h2>The data</h2>
+      <p class="sub">Twenty products and eight zones, taken from the brief and hard-coded in both scripts. There is no external dataset. The fitness function follows the brief’s “affected products” lists, which is not always the same as the column flags: Ice Cream is High in the Demand column but is not charged for sitting outside Z6; Wheat Sacks at 40 kg are not “heavy”, because heavy means over 40 kg.</p>
+      <h3>Products</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Product</th><th>Weight</th><th>Category</th><th>Fragile</th><th>Hazardous</th><th>Temp</th><th>Demand</th></tr></thead>
+          <tbody>
+            <tr><td>P1 – Glass Bottles</td><td>20 kg</td><td>Beverage</td><td>Yes</td><td>No</td><td>No</td><td>Medium</td></tr>
+            <tr><td>P2 – Frozen Meat</td><td>30 kg</td><td>Food</td><td>No</td><td>No</td><td>Yes</td><td>High</td></tr>
+            <tr><td>P3 – Cleaning Acid</td><td>10 kg</td><td>Chemical</td><td>No</td><td>Yes</td><td>No</td><td>Low</td></tr>
+            <tr><td>P4 – Rice Bags</td><td>50 kg</td><td>Grocery</td><td>No</td><td>No</td><td>No</td><td>High</td></tr>
+            <tr><td>P5 – Ceramic Plates</td><td>15 kg</td><td>Kitchenware</td><td>Yes</td><td>No</td><td>No</td><td>Medium</td></tr>
+            <tr><td>P6 – Ice Cream</td><td>25 kg</td><td>Food</td><td>No</td><td>No</td><td>Yes</td><td>High</td></tr>
+            <tr><td>P7 – Detergent</td><td>12 kg</td><td>Chemical</td><td>No</td><td>Yes</td><td>No</td><td>Medium</td></tr>
+            <tr><td>P8 – Chips Carton</td><td>8 kg</td><td>Snacks</td><td>No</td><td>No</td><td>No</td><td>High</td></tr>
+            <tr><td>P9 – Olive Oil Bottles</td><td>18 kg</td><td>Grocery</td><td>Yes</td><td>No</td><td>No</td><td>Medium</td></tr>
+            <tr><td>P10 – Industrial Bleach</td><td>22 kg</td><td>Chemical</td><td>No</td><td>Yes</td><td>No</td><td>Low</td></tr>
+            <tr><td>P11 – Yogurt Cartons</td><td>14 kg</td><td>Food</td><td>No</td><td>No</td><td>Yes</td><td>High</td></tr>
+            <tr><td>P12 – Flour Bags</td><td>45 kg</td><td>Grocery</td><td>No</td><td>No</td><td>No</td><td>High</td></tr>
+            <tr><td>P13 – Wine Bottles</td><td>16 kg</td><td>Beverage</td><td>Yes</td><td>No</td><td>No</td><td>Medium</td></tr>
+            <tr><td>P14 – Paint Cans</td><td>28 kg</td><td>Chemical</td><td>No</td><td>Yes</td><td>No</td><td>Low</td></tr>
+            <tr><td>P15 – Biscuit Boxes</td><td>6 kg</td><td>Snacks</td><td>No</td><td>No</td><td>No</td><td>High</td></tr>
+            <tr><td>P16 – Motor Oil</td><td>35 kg</td><td>Chemical</td><td>No</td><td>Yes</td><td>No</td><td>Low</td></tr>
+            <tr><td>P17 – Frozen Fish</td><td>20 kg</td><td>Food</td><td>No</td><td>No</td><td>Yes</td><td>High</td></tr>
+            <tr><td>P18 – Bubble Wrap Rolls</td><td>10 kg</td><td>Packaging</td><td>Yes</td><td>No</td><td>No</td><td>Medium</td></tr>
+            <tr><td>P19 – Wheat Sacks</td><td>40 kg</td><td>Grocery</td><td>No</td><td>No</td><td>No</td><td>High</td></tr>
+            <tr><td>P20 – Hand Sanitizer</td><td>8 kg</td><td>Chemical</td><td>Yes</td><td>No</td><td>No</td><td>Medium</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Zones</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Zone</th><th>Description</th><th>Capacity</th></tr></thead>
+          <tbody>
+            <tr><td>Z1</td><td>Heavy Item Floor Storage</td><td>120 kg</td></tr>
+            <tr><td>Z2</td><td>Standard Rack Storage</td><td>80 kg</td></tr>
+            <tr><td>Z3</td><td>Fragile Item Shelf</td><td>80 kg</td></tr>
+            <tr><td>Z4</td><td>Temperature Controlled Storage</td><td>80 kg</td></tr>
+            <tr><td>Z5</td><td>Hazardous Material Storage</td><td>80 kg</td></tr>
+            <tr><td>Z6</td><td>Fast-Moving Product Area (Near Exit)</td><td>60 kg</td></tr>
+            <tr><td>Z7</td><td>Bulk Dry Storage</td><td>150 kg</td></tr>
+            <tr><td>Z8</td><td>Refrigerated Loading Dock — whitelist only: Frozen Meat, Yogurt, Frozen Fish</td><td>100 kg</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="models">
+    <div class="wrap reveal">
+      <h2>How the algorithm is built</h2>
+      <p>A chromosome is a list of twenty integers, one zone per product, P1 to P20. The population of 150 starts random. Each generation: sort by penalty, copy the two best unchanged, and fill the rest with tournament selection (size 5), two-point crossover, and per-gene mutation at 0.08. The loop stops at 900 generations, or at a fitness of 0. In every run I have done, it uses the full 900.</p>
+      <p>The original file’s function defaults are population 100, 200 generations, mutation 0.1 and tournament size 3. The actual call at the bottom of that file — and the companion default — is 150, 900, 0.08 and tournament 5.</p>
+      <h3>Penalty weights</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Violation</th><th>Penalty</th></tr></thead>
+          <tbody>
+            <tr><td>Zone weight over the cap</td><td>+2 per extra kilogram</td></tr>
+            <tr><td>Fragile item not in Z3</td><td>+8 per product</td></tr>
+            <tr><td>Hazardous item not in Z5</td><td>+10 per product</td></tr>
+            <tr><td>Temperature-controlled item not in Z4 or Z8</td><td>+9 per product</td></tr>
+            <tr><td>High-demand item not in Z6</td><td>+5 per product</td></tr>
+            <tr><td>Heavy item (over 40 kg) not in Z1</td><td>+4 per product</td></tr>
+            <tr><td>Same-category products in different zones</td><td>+3 per separated pair</td></tr>
+            <tr><td>A food item and a chemical item in the same zone</td><td>+15 per pair</td></tr>
+            <tr><td>A product in Z8 that is not on the whitelist</td><td>+12 per product</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Zero is out of reach for structural reasons, not because the search gave up early. The six fragile items weigh 87 kg and Z3 holds 80; the five hazardous items weigh 107 kg and Z5 holds 80; eight high-demand items weigh 213 kg and Z6 holds 60 kg, and five of those eight also have a cold-shelf or floor-storage rule. The viva notes say the same thing: the algorithm minimises the total, and some leftover penalty is expected.</p>
+    </div>
+  </section>
+
+  <section id="results">
+    <div class="wrap reveal">
+      <h2>Results</h2>
+      <p class="sub">From <code>src/<wbr>warehouse_<wbr>ga.py --seed 0</code>, the default. The operators match the original file. The written report also gives a best fitness of 82; this re-run reaches it at generation 45 and holds it.</p>
+      <h3>Penalty breakdown</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Rule</th><th>Penalty</th><th>On this plan</th></tr></thead>
+          <tbody>
+            <tr><td>Capacity overflow</td><td>0</td><td>Every zone at or under its cap</td></tr>
+            <tr><td>Fragile, not in Z3</td><td>8</td><td>Hand Sanitizer is in Z5</td></tr>
+            <tr><td>Hazardous, not in Z5</td><td>10</td><td>Motor Oil is in Z7</td></tr>
+            <tr class="best"><td>Temperature, not in Z4/Z8</td><td>0</td><td>All four cold items on a cold shelf</td></tr>
+            <tr><td>High demand, not in Z6</td><td>25</td><td>Five conflicting items, +5 each</td></tr>
+            <tr class="best"><td>Heavy, not in Z1</td><td>0</td><td>Rice and Flour on the floor</td></tr>
+            <tr class="best"><td>Illegal Z8</td><td>0</td><td>Only the whitelist is on the dock</td></tr>
+            <tr><td>Same-category split</td><td>39</td><td>Thirteen pairs</td></tr>
+            <tr class="best"><td>Food and chemical together</td><td>0</td><td>They do not share a zone</td></tr>
+            <tr><td>Total</td><td>82</td><td>Held from generation 45 to 900</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The first generation’s best was 247, with a mean of 384.2. The curve drops quickly — 91 by generation 31, 87 by 43 — and lands on 82 at generation 45. After that the best does not move. The population mean at the end is still around 124; mutation keeps stirring the rest, and elitism holds on to 82.</p>
+      <h3>The storage plan</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Zone</th><th>Products</th><th>Weight / cap</th></tr></thead>
+          <tbody>
+            <tr><td>Z1 Heavy Item Floor Storage</td><td>Rice Bags, Flour Bags</td><td>95 / 120 kg</td></tr>
+            <tr><td>Z2 Standard Rack Storage</td><td>(empty)</td><td>0 / 80 kg</td></tr>
+            <tr><td>Z3 Fragile Item Shelf</td><td>Glass Bottles, Ceramic Plates, Olive Oil Bottles, Wine Bottles, Bubble Wrap Rolls</td><td>79 / 80 kg</td></tr>
+            <tr><td>Z4 Temperature Controlled Storage</td><td>Ice Cream</td><td>25 / 80 kg</td></tr>
+            <tr><td>Z5 Hazardous Material Storage</td><td>Cleaning Acid, Detergent, Industrial Bleach, Paint Cans, Hand Sanitizer</td><td>80 / 80 kg</td></tr>
+            <tr><td>Z6 Fast-Moving Product Area</td><td>Chips Carton, Biscuit Boxes, Wheat Sacks</td><td>54 / 60 kg</td></tr>
+            <tr><td>Z7 Bulk Dry Storage</td><td>Motor Oil</td><td>35 / 150 kg</td></tr>
+            <tr><td>Z8 Refrigerated Loading Dock</td><td>Frozen Meat, Yogurt Cartons, Frozen Fish</td><td>64 / 100 kg</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The chromosome is</p>
+      <div class="code-wrap"><pre class="code"><code>[3, 8, 5, 1, 3, 4, 5, 6, 3, 5, 8, 1, 3, 5, 6, 7, 8, 3, 6, 5]</code></pre></div>
+      <p>Twenty violations remain: five high-demand misses, Motor Oil out of Z5, Hand Sanitizer out of Z3, and thirteen category splits. They are listed in <a href="results/violations.csv">results/<wbr>violations.csv</a>. I would not call this the unique optimum — it is a strong plan that the report found, that seed 0 finds, and that several other seeds find as well.</p>
+      <h3>Twelve seeded runs</h3>
+      <p>Seven of twelve seeds finished at 82, five at 88. The mean was 84.5, the median 82. None in that set came in under 82. The table is in <a href="results/seeded_runs.csv">results/<wbr>seeded_<wbr>runs.csv</a>.</p>
+    </div>
+  </section>
+
+  <section id="files">
+    <div class="wrap reveal">
+      <h2>Training and result files</h2>
+      <p>The algorithm does not train on a held-out set; every generation is scored with the same penalty function. The files worth opening:</p>
+      <ul>
+        <li><a href="data/products.csv">data/<wbr>products.csv</a> — the twenty products, with the named sets the fitness function uses.</li>
+        <li><a href="data/zones.csv">data/<wbr>zones.csv</a> — the eight zones and their capacities.</li>
+        <li><a href="results/fitness_history.csv">results/<wbr>fitness_<wbr>history.csv</a> — best, mean, median and worst fitness for all 900 generations.</li>
+        <li><a href="results/best_plan.csv">results/<wbr>best_<wbr>plan.csv</a> and <a href="results/product_assignments.csv">results/<wbr>product_<wbr>assignments.csv</a> — the seed-0 plan.</li>
+        <li><a href="results/violations.csv">results/<wbr>violations.csv</a> and <a href="results/penalty_breakdown.csv">results/<wbr>penalty_<wbr>breakdown.csv</a> — how 82 is made up.</li>
+        <li><a href="src/warehouse_ga.py">src/<wbr>warehouse_<wbr>ga.py</a> and <a href="src/i222327_A02_A.py">src/<wbr>i222327_<wbr>A02_<wbr>A.py</a> — the companion script and the original file.</li>
+        <li><a href="docs/assignment/A2-Warehouse-Storage-Optimization-Using-Genetic-Algorithm.pdf">docs/<wbr>assignment/<wbr>A2-…pdf</a>, <a href="docs/i222327_A02_Report.docx">the report</a>, and <a href="docs/VIVA.docx">the viva notes</a>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="wrap reveal">
+      <h2>Screenshots</h2>
+      <p class="sub">Twenty-four frames, each 1600×1000. Click one to enlarge it.</p>
+      <label class="search"><input id="search" type="search" placeholder="Search screenshots" aria-label="Search screenshots"></label>
+      <div class="chips" role="group" aria-label="Filter screenshots">
+        <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="chip" data-filter="setup">Setup</button>
+        <button type="button" class="chip" data-filter="data">Data</button>
+        <button type="button" class="chip" data-filter="models">Models</button>
+        <button type="button" class="chip" data-filter="web">Website</button>
+      </div>
+      <div class="gallery">
+        <figure class="shot" data-cat="setup" data-full="screenshots/01-repo-structure.png"><button type="button" aria-label="Enlarge repository structure"><span class="thumb"><img src="screenshots/01-repo-structure.png" width="1600" height="1000" alt="Repository folder structure" loading="lazy" decoding="async"></span></button><figcaption>1. Repository folder structure<span>The original file, the companion script, the brief and the site.</span></figcaption></figure>
+        <figure class="shot" data-cat="setup" data-full="screenshots/02-problem.png"><button type="button" aria-label="Enlarge the problem"><span class="thumb"><img src="screenshots/02-problem.png" width="1600" height="1000" alt="The problem" loading="lazy" decoding="async"></span></button><figcaption>2. The problem<span>Twenty products, eight zones, nine penalty rules.</span></figcaption></figure>
+        <figure class="shot" data-cat="data" data-full="screenshots/03-products-table.png"><button type="button" aria-label="Enlarge the product table"><span class="thumb"><img src="screenshots/03-products-table.png" width="1600" height="1000" alt="The product table" loading="lazy" decoding="async"></span></button><figcaption>3. The product table<span>All twenty products, every column from the brief.</span></figcaption></figure>
+        <figure class="shot" data-cat="data" data-full="screenshots/04-zones.png"><button type="button" aria-label="Enlarge the eight zones"><span class="thumb"><img src="screenshots/04-zones.png" width="1600" height="1000" alt="The eight zones" loading="lazy" decoding="async"></span></button><figcaption>4. The eight zones<span>Capacities, roles, and the Z8 whitelist.</span></figcaption></figure>
+        <figure class="shot" data-cat="data" data-full="screenshots/05-penalties.png"><button type="button" aria-label="Enlarge penalty weights"><span class="thumb"><img src="screenshots/05-penalties.png" width="1600" height="1000" alt="Penalty weights" loading="lazy" decoding="async"></span></button><figcaption>5. Penalty weights<span>The nine rules and the points they add.</span></figcaption></figure>
+        <figure class="shot" data-cat="data" data-full="screenshots/06-conflicts.png"><button type="button" aria-label="Enlarge conflicting constraints"><span class="thumb"><img src="screenshots/06-conflicts.png" width="1600" height="1000" alt="Why zero is out of reach" loading="lazy" decoding="async"></span></button><figcaption>6. Why zero is out of reach<span>Fragile, hazardous and high-demand weight against their caps.</span></figcaption></figure>
+        <figure class="shot" data-cat="models" data-full="screenshots/07-chromosome.png"><button type="button" aria-label="Enlarge the chromosome"><span class="thumb"><img src="screenshots/07-chromosome.png" width="1600" height="1000" alt="Chromosome representation" loading="lazy" decoding="async"></span></button><figcaption>7. Chromosome representation<span>Twenty genes, and the seed-0 chromosome.</span></figcaption></figure>
+        <figure class="shot" data-cat="models" data-full="screenshots/08-fitness-code.png"><button type="button" aria-label="Enlarge the fitness code"><span class="thumb"><img src="screenshots/08-fitness-code.png" width="1600" height="1000" alt="The fitness function, source code" loading="lazy" decoding="async"></span></button><figcaption>8. The fitness function<span>The real penalty code from the original file.</span></figcaption></figure>
+        <figure class="shot" data-cat="models" data-full="screenshots/09-operators-code.png"><button type="button" aria-label="Enlarge the operators"><span class="thumb"><img src="screenshots/09-operators-code.png" width="1600" height="1000" alt="Genetic operators, source code" loading="lazy" decoding="async"></span></button><figcaption>9. The operators<span>Selection, crossover, mutation and elitism, as written.</span></figcaption></figure>
+        <figure class="shot" data-cat="models" data-full="screenshots/10-parameters.png"><button type="button" aria-label="Enlarge the parameters"><span class="thumb"><img src="screenshots/10-parameters.png" width="1600" height="1000" alt="Parameters" loading="lazy" decoding="async"></span></button><figcaption>10. Parameters<span>Population 150, 900 generations, mutation 0.08, seed 0.</span></figcaption></figure>
+        <figure class="shot" data-cat="models" data-full="screenshots/11-fitness-curve.png"><button type="button" aria-label="Enlarge the fitness curve"><span class="thumb"><img src="screenshots/11-fitness-curve.png" width="1600" height="1000" alt="Fitness over 900 generations" loading="lazy" decoding="async"></span></button><figcaption>11. Fitness over 900 generations<span>Best-so-far, generation best, and generation mean.</span></figcaption></figure>
+        <figure class="shot" data-cat="models" data-full="screenshots/12-early-descent.png"><button type="button" aria-label="Enlarge the early descent"><span class="thumb"><img src="screenshots/12-early-descent.png" width="1600" height="1000" alt="The early descent" loading="lazy" decoding="async"></span></button><figcaption>12. The early descent<span>82 is first reached at generation 45.</span></figcaption></figure>
+        <figure class="shot" data-cat="models" data-full="screenshots/13-best-plan.png"><button type="button" aria-label="Enlarge the best plan"><span class="thumb"><img src="screenshots/13-best-plan.png" width="1600" height="1000" alt="The best storage plan" loading="lazy" decoding="async"></span></button><figcaption>13. The best storage plan<span>Zone by zone, with weights against capacity.</span></figcaption></figure>
+        <figure class="shot" data-cat="models" data-full="screenshots/14-product-assignments.png"><button type="button" aria-label="Enlarge product assignments"><span class="thumb"><img src="screenshots/14-product-assignments.png" width="1600" height="1000" alt="Product assignments" loading="lazy" decoding="async"></span></button><figcaption>14. Product assignments<span>All twenty products and the zone each one landed in.</span></figcaption></figure>
+        <figure class="shot" data-cat="models" data-full="screenshots/15-zone-loads.png"><button type="button" aria-label="Enlarge zone loads"><span class="thumb"><img src="screenshots/15-zone-loads.png" width="1600" height="1000" alt="Zone loads" loading="lazy" decoding="async"></span></button><figcaption>15. Zone loads<span>Assigned kilograms against each cap.</span></figcaption></figure>
+        <figure class="shot" data-cat="models" data-full="screenshots/16-violations.png"><button type="button" aria-label="Enlarge remaining violations"><span class="thumb"><img src="screenshots/16-violations.png" width="1600" height="1000" alt="Remaining violations" loading="lazy" decoding="async"></span></button><figcaption>16. Remaining violations<span>All twenty leftover penalties that add up to 82.</span></figcaption></figure>
+        <figure class="shot" data-cat="models" data-full="screenshots/17-penalty-breakdown.png"><button type="button" aria-label="Enlarge the penalty breakdown"><span class="thumb"><img src="screenshots/17-penalty-breakdown.png" width="1600" height="1000" alt="How the 82 is made up" loading="lazy" decoding="async"></span></button><figcaption>17. How the 82 is made up<span>The nine rules, and which ones are zero on this plan.</span></figcaption></figure>
+        <figure class="shot" data-cat="models" data-full="screenshots/18-category-splits.png"><button type="button" aria-label="Enlarge category splits"><span class="thumb"><img src="screenshots/18-category-splits.png" width="1600" height="1000" alt="The thirteen category splits" loading="lazy" decoding="async"></span></button><figcaption>18. The thirteen category splits<span>Every same-category pair that sits in two different zones.</span></figcaption></figure>
+        <figure class="shot" data-cat="models" data-full="screenshots/19-seeded-runs.png"><button type="button" aria-label="Enlarge twelve seeds"><span class="thumb"><img src="screenshots/19-seeded-runs.png" width="1600" height="1000" alt="Twelve seeded runs" loading="lazy" decoding="async"></span></button><figcaption>19. Twelve seeds<span>Seven runs at 82, five at 88. None under 82.</span></figcaption></figure>
+        <figure class="shot" data-cat="web" data-full="screenshots/20-website-home-dark.png"><button type="button" aria-label="Enlarge website home dark"><span class="thumb"><img src="screenshots/20-website-home-dark.png" width="1600" height="1000" alt="Website home, dark theme" loading="lazy" decoding="async"></span></button><figcaption>20. Website home, dark theme<span>The graphite-and-coral Pages site, dark theme.</span></figcaption></figure>
+        <figure class="shot" data-cat="web" data-full="screenshots/21-website-home-light.png"><button type="button" aria-label="Enlarge website home light"><span class="thumb"><img src="screenshots/21-website-home-light.png" width="1600" height="1000" alt="Website home, light theme" loading="lazy" decoding="async"></span></button><figcaption>21. Website home, light theme<span>The same page in the chalk light theme.</span></figcaption></figure>
+        <figure class="shot" data-cat="web" data-full="screenshots/22-website-phone.png"><button type="button" aria-label="Enlarge website phone"><span class="thumb"><img src="screenshots/22-website-phone.png" width="1600" height="1000" alt="Website on a phone" loading="lazy" decoding="async"></span></button><figcaption>22. Website on a phone<span>The mobile layout, hamburger menu and stats.</span></figcaption></figure>
+        <figure class="shot" data-cat="web" data-full="screenshots/23-website-results.png"><button type="button" aria-label="Enlarge website results"><span class="thumb"><img src="screenshots/23-website-results.png" width="1600" height="1000" alt="Website results section" loading="lazy" decoding="async"></span></button><figcaption>23. Website · results<span>The breakdown and the plan on the site.</span></figcaption></figure>
+        <figure class="shot" data-cat="web" data-full="screenshots/24-website-how-to-run.png"><button type="button" aria-label="Enlarge website how to run"><span class="thumb"><img src="screenshots/24-website-how-to-run.png" width="1600" height="1000" alt="Website how-to-run section" loading="lazy" decoding="async"></span></button><figcaption>24. Website · how to run<span>A virtualenv, the companion script, and the original file.</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="structure">
+    <div class="wrap reveal">
+      <h2>Folder structure</h2>
+      <pre class="tree"><code>Genetic_Algorithm/
+├── LICENSE
+├── README.md
+├── index.html
+├── requirements.txt
+├── assets/
+├── data/                     products.csv, zones.csv
+├── docs/                     brief, report, viva notes
+├── src/                      original file and companion script
+├── results/                  seed-0 tables and figures
+└── screenshots/              24 × 1600×1000</code></pre>
+    </div>
+  </section>
+
+  <section id="run">
+    <div class="wrap reveal">
+      <h2>How to run</h2>
+      <p class="sub">Python 3, with the packages in <a href="requirements.txt">requirements.txt</a> if you want the plots. The CSV tables in <code>data/</code> are already written.</p>
+      <h3>Linux / macOS</h3>
+      <div class="code-wrap"><pre class="code"><code>git clone https://github.com/rohaan2802/Genetic_Algorithm.git
+cd Genetic_Algorithm
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python3 src/warehouse_ga.py</code></pre></div>
+      <h3>Windows</h3>
+      <div class="code-wrap"><pre class="code"><code>python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+python src\warehouse_ga.py</code></pre></div>
+      <p>That runs the default: population 150, 900 generations, mutation 0.08, seed 0, and writes files under <code>results/</code>. Optional flags: <code>--seed</code>, <code>--no-seed</code>, <code>--data-dir</code>, <code>--results-dir</code>, <code>--no-plots</code>, <code>--quiet</code>. The original unseeded file is <code>src/<wbr>i222327_<wbr>A02_<wbr>A.py</code>.</p>
+    </div>
+  </section>
+
+  <section id="license">
+    <div class="wrap reveal">
+      <h2>License</h2>
+      <p>The code in this repository is under the <a href="LICENSE">MIT License</a>, Copyright (c) 2026 Mohammad Rohaan.</p>
+    </div>
+  </section>
+  </main>
+
+  <button type="button" class="to-top" id="to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M5 15.5 12 8.5 19 15.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <div class="lb" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lb-caption">
+    <button class="lb-btn close" type="button" aria-label="Close">×</button>
+    <button class="lb-btn prev" type="button" aria-label="Previous">‹</button>
+    <button class="lb-btn next" type="button" aria-label="Next">›</button>
+    <img alt="" width="1600" height="1000">
+    <div class="lb-meta">
+      <p class="lb-caption" id="lb-caption"></p>
+      <p class="lb-count" id="lb-count"></p>
+      <a class="lb-original" href="#" target="_blank" rel="noopener">Open original</a>
+    </div>
+  </div>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+id,name,weight_kg,category,fragile,hazardous,temp_controlled,demand,in_fragile_set,in_hazardous_set,in_temp_set,in_high_demand_set,in_heavy_set,z8_eligible
+P1,P1 - Glass Bottles,20,Beverage,Yes,No,No,Medium,Yes,No,No,No,No,No
+P2,P2 - Frozen Meat,30,Food,No,No,Yes,High,No,No,Yes,Yes,No,Yes
+P3,P3 - Cleaning Acid,10,Chemical,No,Yes,No,Low,No,Yes,No,No,No,No
+P4,P4 - Rice Bags,50,Grocery,No,No,No,High,No,No,No,Yes,Yes,No
+P5,P5 - Ceramic Plates,15,Kitchenware,Yes,No,No,Medium,Yes,No,No,No,No,No
+P6,P6 - Ice Cream,25,Food,No,No,Yes,High,No,No,Yes,No,No,No
+P7,P7 - Detergent,12,Chemical,No,Yes,No,Medium,No,Yes,No,No,No,No
+P8,P8 - Chips Carton,8,Snacks,No,No,No,High,No,No,No,Yes,No,No
+P9,P9 - Olive Oil Bottles,18,Grocery,Yes,No,No,Medium,Yes,No,No,No,No,No
+P10,P10 - Industrial Bleach,22,Chemical,No,Yes,No,Low,No,Yes,No,No,No,No
+P11,P11 - Yogurt Cartons,14,Food,No,No,Yes,High,No,No,Yes,Yes,No,Yes
+P12,P12 - Flour Bags,45,Grocery,No,No,No,High,No,No,No,Yes,Yes,No
+P13,P13 - Wine Bottles,16,Beverage,Yes,No,No,Medium,Yes,No,No,No,No,No
+P14,P14 - Paint Cans,28,Chemical,No,Yes,No,Low,No,Yes,No,No,No,No
+P15,P15 - Biscuit Boxes,6,Snacks,No,No,No,High,No,No,No,Yes,No,No
+P16,P16 - Motor Oil,35,Chemical,No,Yes,No,Low,No,Yes,No,No,No,No
+P17,P17 - Frozen Fish,20,Food,No,No,Yes,High,No,No,Yes,Yes,No,Yes
+P18,P18 - Bubble Wrap Rolls,10,Packaging,Yes,No,No,Medium,Yes,No,No,No,No,No
+P19,P19 - Wheat Sacks,40,Grocery,No,No,No,High,No,No,No,Yes,No,No
+P20,P20 - Hand Sanitizer,8,Chemical,Yes,No,No,Medium,Yes,No,No,No,No,No

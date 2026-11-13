@@ -1,0 +1,9 @@
+zone,name,capacity_kg
+Z1,Heavy Item Floor Storage,120
+Z2,Standard Rack Storage,80
+Z3,Fragile Item Shelf,80
+Z4,Temperature Controlled Storage,80
+Z5,Hazardous Material Storage,80
+Z6,Fast-Moving Product Area (Near Exit),60
+Z7,Bulk Dry Storage,150
+Z8,Refrigerated Loading Dock,100

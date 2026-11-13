@@ -1,0 +1,21 @@
+n,violation
+1,P2 - Frozen Meat is high demand but not in Z6 -> +5
+2,P4 - Rice Bags is high demand but not in Z6 -> +5
+3,P11 - Yogurt Cartons is high demand but not in Z6 -> +5
+4,P12 - Flour Bags is high demand but not in Z6 -> +5
+5,P16 - Motor Oil is hazardous but not in Z5 -> +10
+6,P17 - Frozen Fish is high demand but not in Z6 -> +5
+7,P20 - Hand Sanitizer is fragile but not in Z3 -> +8
+8,P2 - Frozen Meat and P6 - Ice Cream same category but different zones -> +3
+9,P3 - Cleaning Acid and P16 - Motor Oil same category but different zones -> +3
+10,P4 - Rice Bags and P9 - Olive Oil Bottles same category but different zones -> +3
+11,P4 - Rice Bags and P19 - Wheat Sacks same category but different zones -> +3
+12,P6 - Ice Cream and P11 - Yogurt Cartons same category but different zones -> +3
+13,P6 - Ice Cream and P17 - Frozen Fish same category but different zones -> +3
+14,P7 - Detergent and P16 - Motor Oil same category but different zones -> +3
+15,P9 - Olive Oil Bottles and P12 - Flour Bags same category but different zones -> +3
+16,P9 - Olive Oil Bottles and P19 - Wheat Sacks same category but different zones -> +3
+17,P10 - Industrial Bleach and P16 - Motor Oil same category but different zones -> +3
+18,P12 - Flour Bags and P19 - Wheat Sacks same category but different zones -> +3
+19,P14 - Paint Cans and P16 - Motor Oil same category but different zones -> +3
+20,P16 - Motor Oil and P20 - Hand Sanitizer same category but different zones -> +3

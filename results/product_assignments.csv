@@ -1,0 +1,21 @@
+product,weight_kg,category,assigned_zone,flags
+P1 - Glass Bottles,20,Beverage,Z3,fragile
+P2 - Frozen Meat,30,Food,Z8,"temp, high-demand, Z8-eligible"
+P3 - Cleaning Acid,10,Chemical,Z5,hazardous
+P4 - Rice Bags,50,Grocery,Z1,"high-demand, heavy"
+P5 - Ceramic Plates,15,Kitchenware,Z3,fragile
+P6 - Ice Cream,25,Food,Z4,temp
+P7 - Detergent,12,Chemical,Z5,hazardous
+P8 - Chips Carton,8,Snacks,Z6,high-demand
+P9 - Olive Oil Bottles,18,Grocery,Z3,fragile
+P10 - Industrial Bleach,22,Chemical,Z5,hazardous
+P11 - Yogurt Cartons,14,Food,Z8,"temp, high-demand, Z8-eligible"
+P12 - Flour Bags,45,Grocery,Z1,"high-demand, heavy"
+P13 - Wine Bottles,16,Beverage,Z3,fragile
+P14 - Paint Cans,28,Chemical,Z5,hazardous
+P15 - Biscuit Boxes,6,Snacks,Z6,high-demand
+P16 - Motor Oil,35,Chemical,Z7,hazardous
+P17 - Frozen Fish,20,Food,Z8,"temp, high-demand, Z8-eligible"
+P18 - Bubble Wrap Rolls,10,Packaging,Z3,fragile
+P19 - Wheat Sacks,40,Grocery,Z6,high-demand
+P20 - Hand Sanitizer,8,Chemical,Z5,fragile

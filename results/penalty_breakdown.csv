@@ -1,0 +1,11 @@
+rule,penalty
+capacity,0
+fragile,8
+hazardous,10
+temp,0
+high_demand,25
+heavy,0
+illegal_z8,0
+category_split,39
+food_chemical,0
+total,82
